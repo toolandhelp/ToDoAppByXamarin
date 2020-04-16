@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="AppFiast.MainPage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="220" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+
+        <StackLayout Orientation="Horizontal">
+            <Image Source="logo_64x64.jpg" Margin="5" />
+
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Label Text="大奶🐂" FontAttributes="Bold" FontSize="15" />
+                <Label Text="toolandhel@gmail.com" FontSize="14" />
+            </StackLayout>
+
+            <Button Text="&#xe615;" FontFamily="iconfont.ttf#" FontSize="25"
+                    BackgroundColor="Transparent" TextColor="Blue"
+                    HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" WidthRequest="50"
+                    Margin="0,0,5,0" />
+        </StackLayout>
+
+        <ListView Grid.Row="1" RowHeight="40" ItemsSource="{Binding MenuModels}" SeparatorVisibility="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding IconFont}" FontFamily="iconfont.ttf#" 
+                                       TextColor="{Binding BackColor}"
+                                       VerticalOptions="Center" Margin="5"
+                                       FontSize="22" FontAttributes="Bold" />
+                                <Label Text="{Binding Title}" Margin="5" VerticalOptions="Center" />
+                            </StackLayout>
+
+                            <Label Grid.Column="1" Text="{Binding TaskInfos.Count}" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        
+    </Grid>
+
+</ContentPage>
