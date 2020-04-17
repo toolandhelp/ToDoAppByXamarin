@@ -18,5 +18,17 @@ namespace AppFiast
             InitializeComponent();
             this.BindingContext = new MainViewModel();
         }
+
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ListView lv = sender as ListView;
+            lv.SelectedItem = null;
+        }
+
+        private void ListViewSub_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ListView lv = sender as ListView;
+            lv.SelectedItem = null;
+        }
     }
 }

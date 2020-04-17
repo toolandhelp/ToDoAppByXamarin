@@ -4,14 +4,19 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:vc="clr-namespace:AppFiast.Converter"
              x:Class="AppFiast.MainPage">
-
+    <ContentPage.Resources>
+        <vc:IValueDiaplayConverter x:Key="idc" />
+    </ContentPage.Resources>
+    
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="220" />
+            <RowDefinition Height="205" />
             <RowDefinition />
+            <RowDefinition  Height="40"/>
         </Grid.RowDefinitions>
 
 
@@ -19,8 +24,8 @@
             <Image Source="logo_64x64.jpg" Margin="5" />
 
             <StackLayout VerticalOptions="EndAndExpand">
-                <Label Text="大奶🐂" FontAttributes="Bold" FontSize="15" />
-                <Label Text="toolandhel@gmail.com" FontSize="14" />
+                <Label Text="大奶🐂" FontAttributes="Bold" FontSize="15" Margin="0" />
+                <Label Text="toolandhel@gmail.com" FontSize="14" Margin="0" />
             </StackLayout>
 
             <Button Text="&#xe615;" FontFamily="iconfont.ttf#" FontSize="25"
@@ -29,7 +34,9 @@
                     Margin="0,0,5,0" />
         </StackLayout>
 
-        <ListView Grid.Row="1" RowHeight="40" ItemsSource="{Binding MenuModels}" SeparatorVisibility="None" >
+        <ListView Grid.Row="1" RowHeight="40"
+                  ItemSelected="ListView_ItemSelected"
+                  ItemsSource="{Binding MenuModels}" SeparatorVisibility="None" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -47,14 +54,53 @@
                                 <Label Text="{Binding Title}" Margin="5" VerticalOptions="Center" />
                             </StackLayout>
 
-                            <Label Grid.Column="1" Text="{Binding TaskInfos.Count}" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
+                            <Label Grid.Column="1" Text="{Binding TaskInfos.Count,Converter={StaticResource idc}}" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            
         </ListView>
-        
-    </Grid>
 
+        <ListView Grid.Row="2" RowHeight="40"
+                  ItemSelected="ListViewSub_ItemSelected"
+                  ItemsSource="{Binding MenuSubModels}" SeparatorVisibility="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="&#xe739;" FontFamily="iconfont.ttf#" 
+                                       VerticalOptions="Center" Margin="0"
+                                       FontSize="
+                                       " FontAttributes="Bold" />
+                                <Label Text="{Binding Title}" Margin="5" VerticalOptions="Center" />
+                            </StackLayout>
+
+                            <Label Grid.Column="1" Text="{Binding TaskInfos.Count,Converter={StaticResource idc}}" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="60" />
+            </Grid.ColumnDefinitions>
+
+            <Button Text="&#xe626; 购物清单                                                  
+                    " FontFamily="iconfont.ttf#" BackgroundColor="Transparent" />
+            <Button Text="&#xe613;" Grid.Column="1" FontSize="25" FontFamily="iconfont.ttf#" HorizontalOptions="StartAndExpand" BackgroundColor="Transparent" />
+
+
+        </Grid>
+
+
+    </Grid>
 </ContentPage>

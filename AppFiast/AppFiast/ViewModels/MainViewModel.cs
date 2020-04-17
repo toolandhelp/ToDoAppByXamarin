@@ -10,11 +10,17 @@ namespace AppFiast.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private ObservableCollection<MenuModel> menuModels;
+        private ObservableCollection<MenuModel> menuSubModels;
 
         public ObservableCollection<MenuModel> MenuModels
         {
             get { return menuModels; }
             set { menuModels = value; RaisePropertyChanged(); }
+        }
+        public ObservableCollection<MenuModel> MenuSubModels
+        {
+            get { return menuSubModels; }
+            set { menuSubModels = value; RaisePropertyChanged(); }
         }
 
         public MainViewModel()
@@ -25,6 +31,13 @@ namespace AppFiast.ViewModels
             menuModels.Add(new MenuModel() { IconFont = "\xe613", Title = "已计划日程", BackColor = "#218868" });
             menuModels.Add(new MenuModel() { IconFont = "\xe603", Title = "已分配给你", BackColor = "#EE3B3B" });
             menuModels.Add(new MenuModel() { IconFont = "\xe696", Title = "任务", BackColor = "#218868" });
+
+            menuSubModels = new ObservableCollection<MenuModel>();
+            menuModels.Add(new MenuModel() {  Title = "购物清单" });
+            menuModels.Add(new MenuModel() {  Title = "杂货清单"});
+            menuModels.Add(new MenuModel() {  Title = "待办事项"});
+
+
         }
     }
 }
