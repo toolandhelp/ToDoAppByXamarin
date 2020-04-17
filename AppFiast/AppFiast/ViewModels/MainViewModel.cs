@@ -33,9 +33,9 @@ namespace AppFiast.ViewModels
             menuModels.Add(new MenuModel() { IconFont = "\xe696", Title = "任务", BackColor = "#218868" });
 
             menuSubModels = new ObservableCollection<MenuModel>();
-            menuModels.Add(new MenuModel() {  Title = "购物清单" });
-            menuModels.Add(new MenuModel() {  Title = "杂货清单"});
-            menuModels.Add(new MenuModel() {  Title = "待办事项"});
+            menuSubModels.Add(new MenuModel() {  Title = "购物清单" });
+            menuSubModels.Add(new MenuModel() {  Title = "杂货清单"});
+            menuSubModels.Add(new MenuModel() {  Title = "待办事项"});
 
 
         }

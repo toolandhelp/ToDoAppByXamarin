@@ -61,9 +61,9 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <ListView Grid.Row="2" RowHeight="40"
+        <ListView Grid.Row="2" RowHeight="40" SeparatorVisibility="None"
                   ItemSelected="ListViewSub_ItemSelected"
-                  ItemsSource="{Binding MenuSubModels}" SeparatorVisibility="None" >
+                  ItemsSource="{Binding MenuSubModels}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -74,10 +74,10 @@
                             </Grid.ColumnDefinitions>
 
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="&#xe739;" FontFamily="iconfont.ttf#" 
-                                       VerticalOptions="Center" Margin="0"
-                                       FontSize="
-                                       " FontAttributes="Bold" />
+                                <Label Text="&#xe739;" 
+                                       FontFamily="iconfont.ttf#" 
+                                       VerticalOptions="Center" Margin="5"
+                                       FontSize="22" FontAttributes="Bold" />
                                 <Label Text="{Binding Title}" Margin="5" VerticalOptions="Center" />
                             </StackLayout>
 
