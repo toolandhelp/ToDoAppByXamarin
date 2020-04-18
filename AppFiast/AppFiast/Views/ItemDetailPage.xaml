@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:vc="clr-namespace:AppFiast.Converter"
              x:Class="AppFiast.Views.ItemDetailPage">
 
     <ContentPage.ToolbarItems>
@@ -14,8 +15,13 @@
         <ToolbarItem Text="发送副本" Order="Secondary"  Priority="0" />
     </ContentPage.ToolbarItems>
 
+    <!--转换器-->
+    <ContentPage.Resources>
+        <vc:IiconConverter x:Key="icc" />
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <Grid>
+        <Grid x:Name="grid">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="50"/>
@@ -23,6 +29,7 @@
 
 
             <ListView RowHeight="40" HasUnevenRows="True"
+                      ItemSelected="ListView_ItemSelected"
                   SeparatorVisibility="None"  ItemsSource="{Binding TaskInfos}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -34,19 +41,46 @@
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
 
-                                <Button Text="&#xe612;" FontFamily="iconfont.ttf#"  />
-                                
+                                <Button Text="{Binding IsDeleted,Converter={StaticResource icc},ConverterParameter='L'}" BackgroundColor="Transparent"
+                                        Command="{Binding Source={x:Reference grid},Path=BindingContext.ExcludeCommand}"
+                                        CommandParameter="{Binding}"
+                                        FontSize="22" FontFamily="iconfont.ttf#"  />
+
                                 <StackLayout Grid.Column="1">
-                                    <Label Text="{Binding Content}" />
+                                    <Label Text="{Binding Content}" TextColor="Black" />
                                     <Label Text="任务" />
                                 </StackLayout>
 
-                                <Button Text="&#xe614;" FontFamily="iconfont.ttf#" Grid.Column="2" />
+                                <Button Text="{Binding IsFavorite,Converter={StaticResource icc},ConverterParameter='R'}" BackgroundColor="Transparent" 
+                                         Command="{Binding Source={x:Reference grid},Path=BindingContext.KeppCommand}"
+                                        CommandParameter="{Binding}"
+                                        FontSize="22" FontFamily="iconfont.ttf#" Grid.Column="2" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackLayout x:Name="xlayout" Grid.Row="1" Orientation="Horizontal" BackgroundColor="White" >
+
+                <Button BackgroundColor="Transparent" WidthRequest="45"
+                        HorizontalOptions="Start"
+                        FontSize="20" TextColor="DarkGray"
+                        Text="&#xe612;"  FontFamily="iconfont.ttf#" />
+                <Editor x:Name="xEdit" HorizontalOptions="FillAndExpand" Placeholder="添加任务" />
+
+                <Button Margin="8" WidthRequest="45" CornerRadius="15"
+                        HorizontalOptions="Start"
+                        FontSize="20" TextColor="White"
+                        Text="&#xe619;" FontFamily="iconfont.ttf#" />
+
+            </StackLayout>
+
+
+            <Button x:Name="btnAdd" Grid.Row="1" Text="&#xe626;" HorizontalOptions="End"
+                    FontFamily="iconfont.ttf#" WidthRequest="40"
+                    Margin="5,0,10,10" FontSize="20" CornerRadius="40" 
+                    BackgroundColor="#D1EEEE" />
         </Grid>
 
     </ContentPage.Content>

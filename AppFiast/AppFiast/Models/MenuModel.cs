@@ -20,8 +20,31 @@ namespace AppFiast.Models
             set { taskInfos = value; RaisePropertyChanged(); }
         }
     }
-    public class TaskInfo
+    public class TaskInfo : ViewModelBase
     {
+        private bool isDeleted;
+        private bool isFavorite;
+
+
         public string Content { get; set; }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
+        public bool IsDeleted
+        {
+            get { return isDeleted; }
+            set { isDeleted = value; RaisePropertyChanged(); }
+        }
+
+        /// <summary>
+        /// 收藏
+        /// </summary>
+        public bool IsFavorite
+        {
+            get { return isFavorite; }
+            set { isFavorite = value; RaisePropertyChanged(); }
+
+        }
     }
 }
