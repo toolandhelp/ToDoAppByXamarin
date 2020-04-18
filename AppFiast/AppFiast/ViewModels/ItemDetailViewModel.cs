@@ -1,16 +1,27 @@
 ﻿using System;
-
+using System.Collections.ObjectModel;
 using AppFiast.Models;
+using GalaSoft.MvvmLight;
 
 namespace AppFiast.ViewModels
 {
-    public class ItemDetailViewModel : BaseViewModel
+    public class ItemDetailViewModel : ViewModelBase
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public ItemDetailViewModel(ObservableCollection<TaskInfo> TaskInfos)
         {
-            Title = item?.Text;
-            Item = item;
+            this.taskInfos = TaskInfos;
+
+            TaskInfos.Add(new TaskInfo() { });
+            TaskInfos.Add(new TaskInfo() { });
+            TaskInfos.Add(new TaskInfo() { });
+        }
+
+        private ObservableCollection<TaskInfo> taskInfos = new ObservableCollection<TaskInfo>();
+
+        public ObservableCollection<TaskInfo> TaskInfos
+        {
+            get { return taskInfos; }
+            set { taskInfos = value; RaisePropertyChanged(); }
         }
     }
 }

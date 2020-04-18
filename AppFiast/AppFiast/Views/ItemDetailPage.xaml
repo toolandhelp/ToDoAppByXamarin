@@ -4,14 +4,51 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="AppFiast.Views.ItemDetailPage"
-             Title="{Binding Title}">
+             x:Class="AppFiast.Views.ItemDetailPage">
 
-    <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" d:Text="Item name" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" d:Text="Item description" FontSize="Small"/>
-    </StackLayout>
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="排序依据" Order="Secondary"  Priority="0" />
+        <ToolbarItem Text="将快捷方式添加到主屏幕" Order="Secondary"  Priority="0" />
+        <ToolbarItem Text="更改主题" Order="Secondary"  Priority="0" />
+        <ToolbarItem Text="隐藏已完成任务" Order="Secondary"  Priority="0" />
+        <ToolbarItem Text="发送副本" Order="Secondary"  Priority="0" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+
+            <ListView RowHeight="40" HasUnevenRows="True"
+                  SeparatorVisibility="None"  ItemsSource="{Binding TaskInfos}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="Center" BackgroundColor="White" Margin="8,4,8,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="50" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button Text="&#xe612;" FontFamily="iconfont.ttf#"  />
+                                
+                                <StackLayout Grid.Column="1">
+                                    <Label Text="{Binding Content}" />
+                                    <Label Text="任务" />
+                                </StackLayout>
+
+                                <Button Text="&#xe614;" FontFamily="iconfont.ttf#" Grid.Column="2" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+    </ContentPage.Content>
+
 </ContentPage>

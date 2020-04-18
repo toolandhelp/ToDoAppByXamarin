@@ -24,6 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Convet\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

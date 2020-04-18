@@ -1,4 +1,6 @@
-﻿using AppFiast.ViewModels;
+﻿using AppFiast.Models;
+using AppFiast.ViewModels;
+using AppFiast.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +18,29 @@ namespace AppFiast
         public MainPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
             this.BindingContext = new MainViewModel();
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             ListView lv = sender as ListView;
+            var m = lv.SelectedItem as MenuModel;
+
+            if (m == null) return;
+
+            //修改子窗口标题头部颜色
+            (App.Current.MainPage as NavigationPage).BarBackgroundColor = Color.FromHex(m.BackColor);
+            //(App.Current.MainPage as NavigationPage).BackgroundColor = Color.FromHex(m.BackColor);
+
+            Navigation.PushAsync(new ItemDetailPage()
+            {
+                Title = m.Title,
+                //修改窗体内部颜色
+                BackgroundColor = Color.FromHex(m.BackColor),
+                BindingContext = new ItemDetailViewModel(m.TaskInfos)
+            });
+
             lv.SelectedItem = null;
         }
 
