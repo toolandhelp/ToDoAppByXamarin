@@ -18,6 +18,7 @@
     <!--转换器-->
     <ContentPage.Resources>
         <vc:IiconConverter x:Key="icc" />
+        <vc:IDecorStatusConverter x:Key="isc" />
     </ContentPage.Resources>
     
     <ContentPage.Content>
@@ -34,28 +35,48 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid VerticalOptions="Center" BackgroundColor="White" Margin="8,4,8,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="50" />
-                                </Grid.ColumnDefinitions>
 
-                                <Button Text="{Binding IsDeleted,Converter={StaticResource icc},ConverterParameter='L'}" BackgroundColor="Transparent"
-                                        Command="{Binding Source={x:Reference grid},Path=BindingContext.ExcludeCommand}"
-                                        CommandParameter="{Binding}"
-                                        FontSize="22" FontFamily="iconfont.ttf#"  />
+                            <SwipeView Margin="8,4,8,0">
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="删除" BackgroundColor="Blue" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
 
-                                <StackLayout Grid.Column="1">
-                                    <Label Text="{Binding Content}" TextColor="Black" />
-                                    <Label Text="任务" />
-                                </StackLayout>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="收藏" BackgroundColor="Red" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
 
-                                <Button Text="{Binding IsFavorite,Converter={StaticResource icc},ConverterParameter='R'}" BackgroundColor="Transparent" 
-                                         Command="{Binding Source={x:Reference grid},Path=BindingContext.KeppCommand}"
-                                        CommandParameter="{Binding}"
-                                        FontSize="22" FontFamily="iconfont.ttf#" Grid.Column="2" />
-                            </Grid>
+
+                                <Grid VerticalOptions="Center" BackgroundColor="White" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="50" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Text="{Binding IsDeleted,Converter={StaticResource icc},ConverterParameter='L'}" BackgroundColor="Transparent"
+                                            Command="{Binding Source={x:Reference grid},Path=BindingContext.ExcludeCommand}"
+                                            CommandParameter="{Binding}"
+                                            FontSize="22" FontFamily="iconfont.ttf#"  />
+
+                                    <StackLayout Grid.Column="1">
+                                        <Label Text="{Binding Content}"
+                                               TextDecorations="{Binding IsDeleted,Converter={StaticResource isc}}"
+                                               TextColor="Black" />
+                                        <Label Text="任务" />
+                                    </StackLayout>
+
+                                    <Button Text="{Binding IsFavorite,Converter={StaticResource icc},ConverterParameter='R'}" BackgroundColor="Transparent" 
+                                             Command="{Binding Source={x:Reference grid},Path=BindingContext.KeppCommand}"
+                                            CommandParameter="{Binding}"
+                                            FontSize="22" FontFamily="iconfont.ttf#" Grid.Column="2" />
+                                </Grid>
+
+                            </SwipeView>
+                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
