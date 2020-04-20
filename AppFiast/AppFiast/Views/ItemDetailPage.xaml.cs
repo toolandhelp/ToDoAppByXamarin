@@ -5,6 +5,7 @@ using Xamarin.Forms.Xaml;
 
 using AppFiast.Models;
 using AppFiast.ViewModels;
+using System.Threading.Tasks;
 
 namespace AppFiast.Views
 {
@@ -26,11 +27,11 @@ namespace AppFiast.Views
             xlayout.IsVisible = false;
         }
 
-        private void BtnAdd_Clicked(object sender, EventArgs e)
+        private async void BtnAdd_Clicked(object sender, EventArgs e)
         {
             btnAdd.IsVisible = false;
             xlayout.IsVisible = true;
-
+            await Task.Delay(500);
             xEdit.Focus();
         }
 

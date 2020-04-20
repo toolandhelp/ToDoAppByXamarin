@@ -39,13 +39,18 @@
                             <SwipeView Margin="8,4,8,0">
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="删除" BackgroundColor="Blue" />
+                                        <SwipeItem
+                                           
+                                            Text="收藏" BackgroundColor="Blue" />
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
 
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="收藏" BackgroundColor="Red" />
+                                        <SwipeItem 
+                                             Command="{Binding Source={x:Reference grid},Path=BindingContext.DeleteCommand}"
+                                             CommandParameter="{Binding}"
+                                            Text="删除" BackgroundColor="Red" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
 
@@ -88,12 +93,13 @@
                         HorizontalOptions="Start"
                         FontSize="20" TextColor="DarkGray"
                         Text="&#xe612;"  FontFamily="iconfont.ttf#" />
-                <Editor x:Name="xEdit" HorizontalOptions="FillAndExpand" Placeholder="添加任务" />
+                <Editor x:Name="xEdit" Text="{Binding Content}" HorizontalOptions="FillAndExpand" Placeholder="添加任务" />
 
-                <Button Margin="8" WidthRequest="45" CornerRadius="15"
-                        HorizontalOptions="Start"
-                        FontSize="20" TextColor="White"
-                        Text="&#xe619;" FontFamily="iconfont.ttf#" />
+                <Button  Command="{Binding Source={x:Reference grid},Path=BindingContext.AddCommand}"
+                         Margin="8" WidthRequest="45" CornerRadius="15"
+                         HorizontalOptions="Start"
+                         FontSize="20" TextColor="White"
+                         Text="&#xe619;" FontFamily="iconfont.ttf#" />
 
             </StackLayout>
 

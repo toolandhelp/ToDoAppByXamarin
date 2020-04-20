@@ -33,6 +33,9 @@ namespace AppFiast.ViewModels
                 else
                     arg.IsFavorite = true;
             });
+
+            AddCommand = new RelayCommand(AddTask);
+            DeleteCommand = new RelayCommand<TaskInfo>(t => DeleteTask(t));
         }
 
         private ObservableCollection<TaskInfo> taskInfos = new ObservableCollection<TaskInfo>();
@@ -43,9 +46,45 @@ namespace AppFiast.ViewModels
             set { taskInfos = value; RaisePropertyChanged(); }
         }
 
+        private string content = string.Empty;
 
+        /// <summary>
+        /// 编辑器内容
+        /// </summary>
+        public string Content
+        {
+            get { return content; }
+            set { content = value; RaisePropertyChanged(); }
+        }
+
+        /// <summary>
+        /// 排除
+        /// </summary>
         public RelayCommand<TaskInfo> ExcludeCommand { get; private set; }
-
+        /// <summary>
+        /// 收藏
+        /// </summary>
         public RelayCommand<TaskInfo> KeppCommand { get; private set; }
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        public RelayCommand AddCommand { get; private set; }
+        /// <summary>
+        /// 删除
+        /// </summary>
+        public RelayCommand<TaskInfo> DeleteCommand { get; private set; }
+
+        public void AddTask()
+        {
+            if (string.IsNullOrWhiteSpace(Content)) return;
+            TaskInfos.Add(new TaskInfo() { Content = Content });
+            Content = string.Empty;
+        }
+
+        public void DeleteTask(TaskInfo t)
+        {
+            TaskInfos.Remove(t);
+        }
     }
 }
