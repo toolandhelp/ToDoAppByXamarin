@@ -11,11 +11,6 @@ namespace AppFiast.ViewModels
         public ItemDetailViewModel(ObservableCollection<TaskInfo> TaskInfos)
         {
             this.taskInfos = TaskInfos;
-
-            TaskInfos.Add(new TaskInfo() { Content="既然内容hi宿舍都发" });
-            TaskInfos.Add(new TaskInfo() { });
-            TaskInfos.Add(new TaskInfo() { });
-
             //🔘点点击改变操作
             ExcludeCommand = new RelayCommand<TaskInfo>(arg =>
             {

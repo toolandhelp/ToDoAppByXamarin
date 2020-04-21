@@ -6,6 +6,17 @@ using System.Text;
 
 namespace AppFiast.Models
 {
+    public class MenuGroup : List<MenuModel>
+    {
+        public MenuGroup(string name,List<MenuModel> models) : base(models)
+        {
+            this.name = name;
+        }
+
+        public string name { get; private set; }
+
+    }
+
     public class MenuModel : ViewModelBase
     {
         public string IconFont { get; set; }

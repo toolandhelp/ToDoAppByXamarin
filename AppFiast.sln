@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFiast.Android", "AppFias
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFiast.iOS", "AppFiast\AppFiast.iOS\AppFiast.iOS.csproj", "{E03378BB-8EFA-4F6C-B3F1-E17518935C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppFiast", "AppFiast\AppFiast\AppFiast.csproj", "{6E1AD7F2-8B23-440E-A084-E6847FCABA0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppFiast", "AppFiast\AppFiast\AppFiast.csproj", "{6E1AD7F2-8B23-440E-A084-E6847FCABA0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

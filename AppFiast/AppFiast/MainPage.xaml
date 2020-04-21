@@ -9,12 +9,11 @@
     <ContentPage.Resources>
         <vc:IValueDiaplayConverter x:Key="idc" />
     </ContentPage.Resources>
-    
+
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="205" />
             <RowDefinition />
             <RowDefinition  Height="40"/>
         </Grid.RowDefinitions>
@@ -33,14 +32,16 @@
                     HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" WidthRequest="50"
                     Margin="0,0,5,0" />
         </StackLayout>
-
-        <ListView Grid.Row="1" RowHeight="40"
-                  ItemSelected="ListView_ItemSelected"
-                  ItemsSource="{Binding MenuModels}" SeparatorVisibility="None" >
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid VerticalOptions="Center">
+        
+        <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand">
+            <CollectionView ItemsSource="{Binding MenuModels}"
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            BackgroundColor="Transparent"
+                            IsGrouped="True"
+                            SelectionMode="Single" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="5,0,0,0" VerticalOptions="Center" HeightRequest="40">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition />
@@ -54,41 +55,18 @@
                                 <Label Text="{Binding Title}" Margin="5" VerticalOptions="Center" />
                             </StackLayout>
 
-                            <Label Grid.Column="1" Text="{Binding TaskInfos.Count,Converter={StaticResource idc}}" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
+                            <Label Grid.Column="1" 
+                                       VerticalOptions="Center"
+                                       Text="{Binding TaskInfos.Count,Converter={StaticResource idc}}" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
                         </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <ListView Grid.Row="2" RowHeight="40" SeparatorVisibility="None"
-                  ItemSelected="ListViewSub_ItemSelected"
-                  ItemsSource="{Binding MenuSubModels}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid VerticalOptions="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
+        </StackLayout>
 
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="&#xe739;" 
-                                       FontFamily="iconfont.ttf#" 
-                                       VerticalOptions="Center" Margin="5"
-                                       FontSize="22" FontAttributes="Bold" />
-                                <Label Text="{Binding Title}" Margin="5" VerticalOptions="Center" />
-                            </StackLayout>
 
-                            <Label Grid.Column="1" Text="{Binding TaskInfos.Count,Converter={StaticResource idc}}" HorizontalOptions="EndAndExpand" Margin="0,0,15,0" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="60" />

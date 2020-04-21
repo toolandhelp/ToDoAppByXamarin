@@ -22,9 +22,10 @@ namespace AppFiast
             this.BindingContext = new MainViewModel();
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+
+        private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListView lv = sender as ListView;
+            CollectionView lv = sender as CollectionView;
             var m = lv.SelectedItem as MenuModel;
 
             if (m == null) return;
@@ -41,12 +42,6 @@ namespace AppFiast
                 BindingContext = new ItemDetailViewModel(m.TaskInfos)
             });
 
-            lv.SelectedItem = null;
-        }
-
-        private void ListViewSub_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            ListView lv = sender as ListView;
             lv.SelectedItem = null;
         }
     }

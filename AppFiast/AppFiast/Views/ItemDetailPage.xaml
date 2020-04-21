@@ -65,6 +65,7 @@
                                     <Button Text="{Binding IsDeleted,Converter={StaticResource icc},ConverterParameter='L'}" BackgroundColor="Transparent"
                                             Command="{Binding Source={x:Reference grid},Path=BindingContext.ExcludeCommand}"
                                             CommandParameter="{Binding}"
+                                            TextColor="{Binding Source={x:RelativeSource AncestorType={x:Type ContentPage}},Path=BackgroundColor}"
                                             FontSize="22" FontFamily="iconfont.ttf#"  />
 
                                     <StackLayout Grid.Column="1">
@@ -75,8 +76,9 @@
                                     </StackLayout>
 
                                     <Button Text="{Binding IsFavorite,Converter={StaticResource icc},ConverterParameter='R'}" BackgroundColor="Transparent" 
-                                             Command="{Binding Source={x:Reference grid},Path=BindingContext.KeppCommand}"
+                                            Command="{Binding Source={x:Reference grid},Path=BindingContext.KeppCommand}"
                                             CommandParameter="{Binding}"
+                                            TextColor="{Binding Source={x:RelativeSource AncestorType={x:Type ContentPage}},Path=BackgroundColor}"
                                             FontSize="22" FontFamily="iconfont.ttf#" Grid.Column="2" />
                                 </Grid>
 
