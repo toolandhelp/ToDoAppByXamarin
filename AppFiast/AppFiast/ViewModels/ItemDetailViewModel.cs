@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using AppFiast.Models;
+using AppFiast.Module;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 

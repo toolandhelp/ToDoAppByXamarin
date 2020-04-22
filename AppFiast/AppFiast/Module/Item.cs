@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AppFiast.Models
+namespace AppFiast.Module
 {
     public class Item
     {

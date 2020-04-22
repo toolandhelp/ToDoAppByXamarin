@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace AppFiast.Models
+namespace AppFiast.Module
 {
     public class MenuGroup : List<MenuModel>
     {

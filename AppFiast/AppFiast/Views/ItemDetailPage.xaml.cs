@@ -3,7 +3,6 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using AppFiast.Models;
 using AppFiast.ViewModels;
 using System.Threading.Tasks;
 
